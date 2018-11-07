@@ -20,22 +20,28 @@ Creador: Daniel Andres Clavijo Giraldo
 */
 
 //Librerias
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
 
-struct cuentas{//Struct asignado a las cuentas del banco
-	int amigo[15];//Cuenta amigo con vector de 15, donde se guardan las 15 transacciones que puede hacer en la cuenta de clientes amigo
-	int empresarial[50];//Cuenta empresarial con vector de 50, donde se guardan las 50 transacciones que puede hacer que puede hacer en la cuenta de clientes empresarial
+struct registros{
+	char nombre;
+	int id;
+	int tel;
+	char direccion;
+	int tipo;
+	float valor;
+	int idcuenta ;
+	int contrasena ;
 };
 
-struct clientes{//Struct asignado para el gerente del banco, este struct tambien es para anidar el struct de cuentas
-	char amigo[100];//Cuentas amigo
-	char namigo[50];//
-	char camigo[50];
-	struct cuentas cuenta;//Struct anidado, para hacer llamado al struct cuentas
-}cliente[50];//Sub Struct para hacer el llamado del estruct clientes
+struct cuentas{
+	int amigo;
+	int empresarial;
+	struct registros registro;
+}clientes[999999];
 
 void crear(struct clientes cliente[50])
 {
@@ -46,7 +52,7 @@ void crear(struct clientes cliente[50])
 	int opc2;//Para guardar la opcion de cliente amigo
 	int opc3;//Para guardar la opcion de cliente empresarial
 	char sn;
-	printf("Registrar Gerente");
+	
 	do
 	{
 		
@@ -313,6 +319,33 @@ void gerente(struct clientes cliente[50])
 }
 int main()
 {
+        srand(time(NULL));
+	for (int i=0; i<25; i++)
+	{
+	clientes[i].registro.nombre=(rand()%127);
+	clientes[i].registro.id=1000000+rand()%(9999999999-1000000);
+	clientes[i].registro.tel=1000000000+rand()%(9999999999-1000000000);
+	clientes[i].registro.direccion=(rand()%127);
+	clientes[i].registro.tipo=1;
+	clientes[i].registro.valor=1+rand()%(15000001-1);
+	clientes[i].registro.idcuenta=1000+rand()%(9999-1000);
+	clientes[i].registro.contrasena=100000+rand()%(999999-100000);
+	fflush(stdin);
+	}
+	
+	for (int i=0; i<25; i++)
+	{
+		printf("%c \n",clientes[i].registro.nombre);
+		printf("%i \n",clientes[i].registro.id);
+		printf("%i \n",clientes[i].registro.tel);
+		printf("%c \n",clientes[i].registro.direccion);
+		printf("%i \n",clientes[i].registro.tipo);
+		printf("%.2f \n",clientes[i].registro.valor);
+		printf("%i \n",clientes[i].registro.idcuenta);
+		printf("%i \n",clientes[i].registro.contrasena);
+		fflush(stdin);
+	}
+	
 	system("color 0b");
 	crear(cliente);
 	gerente(cliente);
