@@ -441,9 +441,9 @@ int main ()
 		for (int m=0;m<cc3;m++)
 		{
 			clientes[i].registro.correo[m]=clientes[i].registro.nombre[m];
-			printf("%c@cotecnova.com",clientes[i].registro.correo[m]);
+			printf("%c",clientes[i].registro.correo[m]);
 		}
-		//printf("@cotecnova.com\n");
+		printf("@cotecnova.com\n");
 		
 		//DIRECCION CLIENTE
 		scc_dir = 0 + rand ()% (3 - 0);
